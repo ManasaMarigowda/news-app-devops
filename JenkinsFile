@@ -21,9 +21,9 @@ stage('Upload to JFrog') {
       steps {
         withCredentials([string(credentialsId: 'jfrogkey', variable: 'JFROG_API_KEY')]) {
           sh """
-            curl -f -H "X-JFrog-Art-Api: ${JFROG_API_KEY}" \
-                -T "$/home/ubuntu/workspace/news-app-devops_feature-2/target/news-app.war/" \
-                "${JFROG_URL}/featue-2/news-app_1.war" \ 
+            curl -f -H "X-JFrog-Art-Api: ${JFROG_API_KEY}"\
+                -T "$/home/ubuntu/workspace/news-app-devops_feature-2/target/news-app.war/"\
+                "${JFROG_URL}/feature-2/news-app_1.war"\ 
           """
         }
       }
