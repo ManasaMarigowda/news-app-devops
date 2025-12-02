@@ -15,7 +15,7 @@ pipeline {
 }
    stage('Depoly') {
            steps {
-           sh "sudo cp /home/ubuntu/workspace/news-app-devops_feature-1/target/news-app.war /opt/tomcat/webapps"
+           sh "sudo cp /home/ubuntu/workspace/news-app-devops_feature-1/target/news-app.war /opt/tomcat10/webapps"
        }
     }
 }
