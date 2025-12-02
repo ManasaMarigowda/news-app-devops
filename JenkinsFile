@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-              sh "rm -rf hello-world-war "
+              sh "rm -rf news-app-devops "
                 sh "git clone https://github.com/ManasaMarigowda/news-app-devops"
             }
   }
@@ -15,6 +15,7 @@ pipeline {
 }
    stage('Depoly') {
           steps {
+           sh " rm-rf /home/ubuntu/workspace/news-app-devops_feature-2/target/news-app.war"
           sh "sudo cp  /home/ubuntu/workspace/news-app-devops_feature-2/target/news-app.war /opt/tomcat10/webapps"
        }
   }
