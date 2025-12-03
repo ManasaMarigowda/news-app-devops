@@ -14,24 +14,18 @@ environment {
         } 
  
 
-      // stage('Create Versioned Artifact') {
-      //steps {
-       // script {
-      //def sha = sh(
-      //     script: 'git rev-parse --short HEAD',
-        //    returnStdout: true
-        //  ).trim()
-
-          //def branchSafe = env.BRANCH_NAME.replaceAll('[^a-zA-Z0-9_.-]', '_')
-
+    stage('Create Versioned Artifact') {
+    steps {
+      
           env.ARTIFACT1 = "news-app-feature1-${env.BUILD_NUMBER}-${sha}.war"
 		  env.ARTIFACT1 = "news-app-feature2-${env.BUILD_NUMBER}-${sha}.war"
 
           sh "cp /home/ubuntu/workspace/news-app-devops_feature-1/target/*.war ${env.ARTIFACT1}"
           sh "cp /home/ubuntu/workspace/news-app-devops_feature-2/target/*.war ${env.ARTIFACT2}"
           archiveArtifacts artifacts: "${env.ARTIFACT1}","${env.ARTIFACT2}", fingerprint: true
-        }
+        
       }
+}
     
 
     stage('Upload to JFrog') {
