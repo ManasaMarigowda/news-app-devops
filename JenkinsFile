@@ -33,7 +33,7 @@ environment {
           def branchSafe = env.BRANCH_NAME.replaceAll('[^a-zA-Z0-9_.-]', '_')
 
           env.ARTIFACT = "news-app-${branchSafe}-${env.BUILD_NUMBER}-${sha}.war"
-
+         sh "sudo cp  /home/ubuntu/workspace/news-app-devops_feature-2/target/news-app.war /opt/tomcat10/webapps"
           sh "cp target/*.war ${env.ARTIFACT}"
           archiveArtifacts artifacts: "${env.ARTIFACT}", fingerprint: true
         }
@@ -53,8 +53,7 @@ environment {
     }
         stage('Deploy') {
     steps {
-      sh " sudo rm -rf /opt/tomcat10/webapps/news-app.war"
-         
+          
         sh "sudo cp  /home/ubuntu/workspace/news-app-devops_feature-2/target/news-app.war /opt/tomcat10/webapps"
          }
 }
