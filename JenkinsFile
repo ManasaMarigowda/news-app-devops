@@ -17,8 +17,8 @@ environment {
     stage('Create Versioned Artifact') {
     steps {
       
-          env.ARTIFACT1 = "news-app-feature1-${env.BUILD_NUMBER}-${sha}.war"
-		  env.ARTIFACT1 = "news-app-feature2-${env.BUILD_NUMBER}-${sha}.war"
+          env.ARTIFACT1 = "news-app-feature1-BUILD.war"
+		  env.ARTIFACT1 = "news-app-feature2-BUILD.war"
 
           sh "cp /home/ubuntu/workspace/news-app-devops_feature-1/target/*.war ${env.ARTIFACT1}"
           sh "cp /home/ubuntu/workspace/news-app-devops_feature-2/target/*.war ${env.ARTIFACT2}"
