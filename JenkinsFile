@@ -32,7 +32,7 @@ environment {
 
           env.ARTIFACT = "news-app-${branchSafe}-${env.BUILD_NUMBER}-${sha}.war"
 
-          sh "cp target/*.war ${env.ARTIFACT}"
+          sh "cp /home/ubuntu/workspace/news-app-devops_feature-2/target/*.war ${env.ARTIFACT}"
           archiveArtifacts artifacts: "${env.ARTIFACT}", fingerprint: true
         }
       }
