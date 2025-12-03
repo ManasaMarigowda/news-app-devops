@@ -12,28 +12,24 @@ environment {
                sh "git clone https://github.com/ManasaMarigowda/news-app-devops"
             }
         } 
- stage('Deploy') {
-    steps {
-      sh " sudo rm -rf /opt/tomcat10/webapps/news-app.war"
-         
-        sh "sudo cp  /home/ubuntu/workspace/news-app-devops_feature-2/target/news-app.war /opt/tomcat10/webapps"
-         }
-}
+ 
 
-       stage('Create Versioned Artifact') {
-      steps {
-        script {
-          def sha = sh(
-            script: 'git rev-parse --short HEAD',
-            returnStdout: true
-          ).trim()
+      // stage('Create Versioned Artifact') {
+      //steps {
+       // script {
+      //def sha = sh(
+      //     script: 'git rev-parse --short HEAD',
+        //    returnStdout: true
+        //  ).trim()
 
-          def branchSafe = env.BRANCH_NAME.replaceAll('[^a-zA-Z0-9_.-]', '_')
+          //def branchSafe = env.BRANCH_NAME.replaceAll('[^a-zA-Z0-9_.-]', '_')
 
-          env.ARTIFACT = "news-app-${branchSafe}-${env.BUILD_NUMBER}-${sha}.war"
+          env.ARTIFACT1 = "news-app-feature1-${env.BUILD_NUMBER}-${sha}.war"
+		  env.ARTIFACT1 = "news-app-feature2-${env.BUILD_NUMBER}-${sha}.war"
 
-          sh "cp /home/ubuntu/workspace/news-app-devops_feature-2/target/*.war ${env.ARTIFACT}"
-          archiveArtifacts artifacts: "${env.ARTIFACT}", fingerprint: true
+          sh "cp /home/ubuntu/workspace/news-app-devops_feature-1/target/*.war ${env.ARTIFACT1}"
+          sh "cp /home/ubuntu/workspace/news-app-devops_feature-2/target/*.war ${env.ARTIFACT2}"
+          archiveArtifacts artifacts: "${env.ARTIFACT1}","${env.ARTIFACT2}", fingerprint: true
         }
       }
     }
@@ -43,8 +39,8 @@ environment {
         withCredentials([string(credentialsId: 'jfrogkey', variable: 'JFROG_API_KEY')]) {
           sh """
             curl -f -H "X-JFrog-Art-Api: ${JFROG_API_KEY}" \
-                -T "${env.ARTIFACT}" \
-                "${JFROG_URL}/${REPO_NAME}/${env.BRANCH_NAME}/${env.ARTIFACT}"
+                -T "${env.ARTIFACT1}" \
+                "${JFROG_URL}/${REPO_NAME}/feature-1/${env.ARTIFACT1}" 
           """
         }
       }
