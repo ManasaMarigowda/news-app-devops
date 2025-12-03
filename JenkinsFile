@@ -32,7 +32,7 @@ environment {
           archiveArtifacts artifacts: "${env.ARTIFACT1}","${env.ARTIFACT2}", fingerprint: true
         }
       }
-    }
+    
 
     stage('Upload to JFrog') {
       steps {
