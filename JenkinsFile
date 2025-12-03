@@ -1,4 +1,8 @@
 pipeline {
+environment {
+    JFROG_URL = 'https://trialcxid14.jfrog.io/artifactory/api/maven/news-app-devops-libs-snapshot'
+    REPO_NAME = 'news-app-devops-libs-snapshot'      // JFrog repo for feature branches
+  }
     agent { label 'slave1' }
     stages {
         stage('Checkout') {
