@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Deploy') {
     steps {
-      sh " sudo rm-rf /home/ubuntu/workspace/news-app-devops_feature-2/target/news-app.war"
+      sh " sudo rm -rf /home/ubuntu/workspace/news-app-devops_feature-2/target/news-app.war"
          
         sh "sudo cp  /home/ubuntu/workspace/news-app-devops_feature-2/target/news-app.war /opt/tomcat10/webapps"
       echo "build deployed"
