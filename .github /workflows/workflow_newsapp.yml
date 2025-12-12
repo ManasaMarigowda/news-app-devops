@@ -1,4 +1,4 @@
-name: News App CI/CD
+ name: News App CI/CD
 
 on:
   push:
